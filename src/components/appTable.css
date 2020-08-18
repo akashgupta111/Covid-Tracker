@@ -1,7 +1,19 @@
 .table-container{
-    margin-top:50px
+    margin-top:50px;
+}
+table{
+    border-spacing: 2px;
+    border-collapse: unset !important;
 }
 .table-container td,th {
-    border:1px solid black;
-    width:50px
+    /* border:1px solid black; */
+    width:50px;
+    /* border-spacing: 10px; */
+    border-radius: 2px;
+}
+th{
+    background-color: #dddddd;
+}
+tr:nth-child(even) {
+    background-color: #dddddd;
 }

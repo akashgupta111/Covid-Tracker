@@ -4,6 +4,7 @@ import './App.css';
 import AppNavBar from './components/AppNavBar'
 import Cards from './components/Cards';
 import AppTable from './components/AppTable'
+import Charts from './components/Charts';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <AppNavBar/>
       <Cards/>
       <AppTable/>
+      <Charts/>
     </div>
   );
 }
