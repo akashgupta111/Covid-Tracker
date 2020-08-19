@@ -1,58 +1,16 @@
 import React, { Component } from 'react';
 import {Line} from 'react-chartjs-2';
-import numeral from 'numeral'
+import Chart from './Chart';
+import { hexToRgb } from '@material-ui/core';
 
-// const options={
-//     legend:{
-//         display:false,
-//     },
-//     elements:{
-//         point:{
-//             radius:0
-//         },
-//     },
-//     maintainAspectRatio:false,
-//     tooltips: {
-//         mode: "index",
-//         intersect: false,
-//         callbacks: {
-//           label: function (tooltipItem, data) {
-//             return numeral(tooltipItem.value).format("+0,0");
-//           },
-//         },
-//       },
-//       scales: {
-//         xAxes: [
-//           {
-//             type: "time",
-//             time: {
-//               format: "MM/DD/YY",
-//               tooltipFormat: "ll",
-//             },
-//           },
-//         ],
-//         yAxes: [
-//           {
-//             gridLines: {
-//               display: false,
-//             },
-//             ticks: {
-//               // Include a dollar sign in the ticks
-//               callback: function (value, index, values) {
-//                 return numeral(value).format("0a");
-//               },
-//             },
-//           },
-//         ],
-//       },
-
-    
-// }
 class Charts extends Component {
     state={
         data:[],
         totalConfirmed:[],
-        date:[]
+        date:[],
+        totalActive: [],
+        totalRecovered: [],
+        totalDeaths: []
     }
     componentDidMount(){
         fetch('https://api.covid19india.org/data.json')
@@ -62,22 +20,34 @@ class Charts extends Component {
             // let newArr = [];
             let totalConfirmedArr=[];
             let dateArr=[];
+            let totalActiveArr=[];
+            let totalRecoveredArr=[];
+            let totalDeathsArr=[];
             result.cases_time_series.forEach(item=>{
                 // const obj = {
                 //     date:item.date,
                 //     totalConfirmed:item.totalconfirmed,
                 // }
                 // newArr.push(obj);
-                totalConfirmedArr.push(item.totalconfirmed)
+                totalConfirmedArr.push(item.dailyconfirmed)
                 dateArr.push(item.date)
+                totalActiveArr.push(item.dailyconfirmed - item.dailyrecovered - item.dailydeceased)
+                totalRecoveredArr.push(item.dailyrecovered)
+                totalDeathsArr.push(item.dailydeceased)
             })
             var slicedConfirmedArr = totalConfirmedArr.slice(-30);
-            var slicedDateArr = dateArr.slice(-30)
+            var slicedDateArr = dateArr.slice(-30);
+            var slicedRecovered = totalRecoveredArr.slice(-30);
+            var slicedDeaths = totalDeathsArr.slice(-30);
+            var slicedActive = totalActiveArr.slice(-30)
             // console.log(dateArr);
             this.setState({
                 // data:newArr,
                 totalConfirmed:slicedConfirmedArr,
-                date:slicedDateArr
+                date:slicedDateArr,
+                totalRecovered:slicedRecovered,
+                totalDeaths:slicedDeaths,
+                totalActive: slicedActive
             },()=>{
                 console.log('totalConfirmed',this.state.totalConfirmed)
                 console.log('date',this.state.date)
@@ -86,36 +56,43 @@ class Charts extends Component {
     }
    
     render() {
-        const data={
-            labels:this.state.date,
-            datasets:[{
-                backgroundColor: "rgba(204,16,52,0.5)",
-                borderColor: "#CC1034",
-                label:'Corona Cases',
-                data:this.state.totalConfirmed
-            }]
-        }
-        const options = {
-            title:{
-                display :true,
-                text:'Confirmed Cases'
-            },
-            scales:{
-                yAxes:[{
-                    ticks:{
-                        min:1000000,
-                        max:Number(this.state.totalConfirmed[this.state.totalConfirmed.length-1]),
-                        stepSize:200000
-                    }
-                }]
-            }
+        
             
-        }
+        
         return (
             <div>
-                <Line 
-                    options={options}
-                    data={data}/>
+                <Chart 
+                    speData={this.state.totalConfirmed} 
+                    date={this.state.date} 
+                    min={0}
+                    title='Confirmed Cases'
+                    bdColor="#CC1034"
+                    bgColor= "rgba(204,16,52,0.5)"
+                    step={10000}/>
+                <Chart 
+                    speData={this.state.totalRecovered} 
+                    date={this.state.date} 
+                    min={0}
+                    title='Recovered'
+                    bdColor='#43f906'
+                    bgColor= "rgba(80, 166, 69,0.5)"
+                    step={10000}/>
+                <Chart 
+                    speData={this.state.totalDeaths} 
+                    date={this.state.date} 
+                    min={0}
+                    title='Deaths'
+                    bdColor='#1a1a1a'
+                    bgColor= "rgba(115, 115, 115,0.5)"
+                    step={100}/>
+                <Chart 
+                speData={this.state.totalActive} 
+                date={this.state.date} 
+                min={Math.min(...this.state.totalActive) - (1000+(Math.min(...this.state.totalActive)%1000))}
+                title='Active'
+                bdColor='#0577f6'
+                bgColor= "rgba(5 ,119 ,246 ,0.5)"
+                step={2000}/>
             </div>
         );
     }

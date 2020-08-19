@@ -10,7 +10,7 @@ class AppCard extends Component {
 
    
     render() {
-        const { heading, fontColor, backgroundColor, cases , diffConfirmed ,sign} = this.props;
+        const { heading, fontColor, backgroundColor, cases , diffConfirmed,diffRecovered,diffActive,diffDeath ,sign} = this.props;
         
         var x= Number(cases);
         x=x.toString();
@@ -20,11 +20,11 @@ class AppCard extends Component {
             lastThree = ',' + lastThree;
         var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
         return (
-            <div style= {{backgroundColor:backgroundColor}}>
+            <div >
                 <Card className="app-card">
                     <CardBody style={{color:fontColor}}>
                         <CardTitle>{heading}</CardTitle>
-                        <CardSubtitle>{sign? <span>+</span>:''} {diffConfirmed}</CardSubtitle>
+                        <CardSubtitle>{sign? <span>+</span>:''} {diffConfirmed} {diffRecovered} {diffActive} {diffDeath}</CardSubtitle>
                         <CardText className="card-text">{res}</CardText>
                     </CardBody>
                 </Card>

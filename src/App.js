@@ -13,6 +13,7 @@ function App() {
       <Cards/>
       <AppTable/>
       <Charts/>
+      
     </div>
   );
 }
