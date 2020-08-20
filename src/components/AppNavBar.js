@@ -22,7 +22,7 @@ function AppNavBar (props) {
     const toggle = () => setIsOpen(!isOpen);
     return (
         <div>
-            <Navbar color="light" light expand="md">
+            <Navbar color="dark" light expand="md">
                 <NavbarBrand href="/">Covid Tracker</NavbarBrand>
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
