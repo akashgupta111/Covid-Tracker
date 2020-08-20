@@ -1,5 +1,6 @@
 .table-container{
     margin-top:50px;
+    margin-bottom: 50px;
 }
 table{
     border-spacing: 2px;
@@ -13,7 +14,9 @@ table{
 }
 th{
     background-color: #dddddd;
+    color: black;
 }
 tr:nth-child(even) {
     background-color: #dddddd;
+    color:black
 }
