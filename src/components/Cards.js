@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import AppCard from './AppCard';
 import { Container, Row, Col } from 'reactstrap';
 import './cards.css';
-
+import ThemeContext from './ThemeContext'
 class Cards extends Component {
     state={
         confirmed:0,
@@ -46,25 +46,31 @@ class Cards extends Component {
     }
     render() {
         return (
-            <div>
-                <Container className="cards-container">
-                    <Row>
-                        <Col md="3">
-                            <AppCard heading="Confirmed" fontColor="red" backgroundColor="rgba(255,7,58,.12549)" cases = {this.state.confirmed} diffConfirmed={this.state.diffConfirmed} sign={this.state.isPlusSign}/>
-                        </Col>
-                        <Col md="3">
-                            <AppCard heading="Active" fontColor="#037AFB" backgroundColor="rgba(0,123,255,.0627451)" cases = {this.state.active} diffActive={this.state.diffActive} sign={this.state.isPlusSign}/>
-                        </Col>
-                        <Col md="3">
-                            <AppCard heading="Recovered" fontColor="#50A745" backgroundColor="rgba(40,167,69,.12549)" cases = {this.state.recovered} diffRecovered={this.state.diffRecovered} sign={this.state.isPlusSign}/>
-                        </Col>
-                        <Col md="3">
-                            <AppCard heading="Deaths" fontColor="gray" backgroundColor="rgba(108,117,125,.0627451)" cases = {this.state.deaths} diffDeath={this.state.diffDeath} sign={this.state.isPlusSign}/>
-                        </Col>
-                    </Row>
-                </Container>
+            <ThemeContext.Consumer>
+                {(theme)=>(
+                    <div>
+                        <Container className="cards-container">
+                            <Row>
+                                <Col md="3">
+                                    <AppCard heading="Confirmed" fontColor="red" backgroundColor="rgba(255,7,58,.12549)" cases = {this.state.confirmed} diffConfirmed={this.state.diffConfirmed} sign={this.state.isPlusSign}/>
+                                </Col>
+                                <Col md="3">
+                                    <AppCard heading="Active" fontColor="#037AFB" backgroundColor="rgba(0,123,255,.0627451)" cases = {this.state.active} diffActive={this.state.diffActive} sign={this.state.isPlusSign}/>
+                                </Col>
+                                <Col md="3">
+                                    <AppCard heading="Recovered" fontColor="#50A745" backgroundColor="rgba(40,167,69,.12549)" cases = {this.state.recovered} diffRecovered={this.state.diffRecovered} sign={this.state.isPlusSign}/>
+                                </Col>
+                                <Col md="3">
+                                    <AppCard heading="Deaths" fontColor="gray" backgroundColor="rgba(108,117,125,.0627451)" cases = {this.state.deaths} diffDeath={this.state.diffDeath} sign={this.state.isPlusSign}/>
+                                </Col>
+                            </Row>
+                        </Container>
+                    
+                     </div>
+                )}
                 
-            </div>
+
+            </ThemeContext.Consumer>
         );
     }
 }

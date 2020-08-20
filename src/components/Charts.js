@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Line} from 'react-chartjs-2';
 import Chart from './Chart';
+import { Container, Row, Col } from 'reactstrap';
 import { hexToRgb } from '@material-ui/core';
 
 class Charts extends Component {
@@ -61,38 +62,54 @@ class Charts extends Component {
         
         return (
             <div>
-                <Chart 
-                    speData={this.state.totalConfirmed} 
-                    date={this.state.date} 
-                    min={0}
-                    title='Confirmed Cases'
-                    bdColor="#CC1034"
-                    bgColor= "rgba(204,16,52,0.5)"
-                    step={10000}/>
-                <Chart 
-                    speData={this.state.totalRecovered} 
-                    date={this.state.date} 
-                    min={0}
-                    title='Recovered'
-                    bdColor='#43f906'
-                    bgColor= "rgba(80, 166, 69,0.5)"
-                    step={10000}/>
-                <Chart 
-                    speData={this.state.totalDeaths} 
-                    date={this.state.date} 
-                    min={0}
-                    title='Deaths'
-                    bdColor='#1a1a1a'
-                    bgColor= "rgba(115, 115, 115,0.5)"
-                    step={100}/>
-                <Chart 
-                speData={this.state.totalActive} 
-                date={this.state.date} 
-                min={Math.min(...this.state.totalActive) - (1000+(Math.min(...this.state.totalActive)%1000))}
-                title='Active'
-                bdColor='#0577f6'
-                bgColor= "rgba(5 ,119 ,246 ,0.5)"
-                step={2000}/>
+                <Container>
+                    <Row>
+                        <Col md="12">
+                            <Chart 
+                                speData={this.state.totalConfirmed} 
+                                date={this.state.date} 
+                                min={0}
+                                title='Confirmed Cases'
+                                bdColor="#CC1034"
+                                bgColor= "rgba(204,16,52,0.5)"
+                                step={10000}/>
+                            
+                        </Col>
+                        <Col md="12">
+                            <Chart 
+                                speData={this.state.totalRecovered} 
+                                date={this.state.date} 
+                                min={0}
+                                title='Recovered'
+                                bdColor='#43f906'
+                                bgColor= "rgba(80, 166, 69,0.5)"
+                                step={10000}/>
+
+                        </Col>
+                        <Col md="12">
+                            <Chart 
+                                speData={this.state.totalDeaths} 
+                                date={this.state.date} 
+                                min={0}
+                                title='Deaths'
+                                bdColor='#1a1a1a'
+                                bgColor= "rgba(115, 115, 115,0.5)"
+                                step={500}/>
+
+                        </Col>
+                        <Col md="12">
+
+                            <Chart 
+                            speData={this.state.totalActive} 
+                            date={this.state.date} 
+                            min={Math.min(...this.state.totalActive) - (1000+(Math.min(...this.state.totalActive)%1000))}
+                            title='Active'
+                            bdColor='#0577f6'
+                            bgColor= "rgba(5 ,119 ,246 ,0.2)"
+                            step={10000}/>
+                        </Col>
+                    </Row>
+                </Container>
             </div>
         );
     }
