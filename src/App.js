@@ -24,7 +24,7 @@ function App() {
           <AppTable/>
           {/* <Charts/> */}
            <VisualLayout/> 
-          <Map/>
+          {/* <Map/> */}
         
       </div>
     </ThemeContext.Provider>

@@ -72,6 +72,7 @@ class Charts extends Component {
                                 title='Confirmed Cases'
                                 bdColor="#CC1034"
                                 bgColor= "rgba(204,16,52,0.5)"
+                                bggColor= "rgba(255, 179, 179,0.2)"
                                 step={10000}/>
                             
                         </Col>
@@ -83,6 +84,7 @@ class Charts extends Component {
                                 title='Recovered'
                                 bdColor='#43f906'
                                 bgColor= "rgba(80, 166, 69,0.5)"
+                                bggColor= "rgba(180, 253, 180,0.2)"
                                 step={10000}/>
 
                         </Col>
@@ -94,6 +96,7 @@ class Charts extends Component {
                                 title='Deaths'
                                 bdColor='#1a1a1a'
                                 bgColor= "rgba(115, 115, 115,0.5)"
+                                bggColor= "rgba(217, 217, 217,0.2)"
                                 step={500}/>
 
                         </Col>
@@ -106,6 +109,7 @@ class Charts extends Component {
                             title='Active'
                             bdColor='#0577f6'
                             bgColor= "rgba(5 ,119 ,246 ,0.2)"
+                            bggColor= "rgba(153, 187, 255,0.2)"
                             step={10000}/>
                         </Col>
                     </Row>
