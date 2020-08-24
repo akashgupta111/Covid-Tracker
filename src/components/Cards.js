@@ -35,7 +35,7 @@ class Cards extends Component {
                 diffActive: Number(result.cases_time_series[result.cases_time_series.length-1].dailyconfirmed) - Number(result.cases_time_series[result.cases_time_series.length-1].dailyrecovered),
                 diffDeath: Number(result.cases_time_series[result.cases_time_series.length-1].dailydeceased)
             },()=>{
-                if(this.state.diffConfirmed<0){
+                if(this.state.diffActive<0){
                     this.setState({
                         isPlusSign:false
                     })
@@ -53,7 +53,7 @@ class Cards extends Component {
         return (
             
                     <div>
-                        <Container className={style.cards}>
+                        <Container className='cards'>
                             <Row>
                                 <Col md="3">
 

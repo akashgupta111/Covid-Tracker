@@ -81,14 +81,14 @@ function AppNavBar (props) {
     return (
         <div className="nav-container">
             <Navbar className="pd-5" color='dark' dark expand="md">
-                <NavbarBrand href="/">Covid Tracker</NavbarBrand>
+                <NavbarBrand href="/">India Covid-19 Tracker</NavbarBrand>
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
                 <div className="nav-input-div">
                     <span>{<SearchOutlinedIcon/>}</span>
                     <div style={{width:'100%'}}>
 
-                    <Input value={input} className="nav-input" type="text" placeholder="Search" onChange ={(e)=>{setInput(e.target.value)}} onKeyPress={searchHandler} invalid={validation==="failiure"}/>
+                    <Input value={input} className="nav-input" type="text" placeholder="Search by State" onChange ={(e)=>{setInput(e.target.value)}} onKeyPress={searchHandler} invalid={validation==="failiure"}/>
                     <FormFeedback style={{marginTop:'0px'}}>Please type valid state</FormFeedback>
                     </div>
                 </div>
