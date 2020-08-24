@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import Chart from 'react-google-charts';
+import './Map.css';
 
 class Map extends Component {
     state={
+
         confirmed:[]
     }
     componentDidMount(){
@@ -82,6 +84,9 @@ class Map extends Component {
 //   mapsApiKey="YOUR_KEY_HERE"
   rootProps={{ 'data-testid': '1' }}
 />
+
+        
+
             </div>
         );
     }

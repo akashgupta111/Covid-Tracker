@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import AppCard from './AppCard';
 import { Container, Row, Col } from 'reactstrap';
+
 import './cards.css';
+
+
+
+
+
 class Cards extends Component {
     state={
         confirmed:0,
@@ -47,13 +53,15 @@ class Cards extends Component {
         return (
             
                     <div>
-                        <Container className="cards-container">
+                        <Container className={style.cards}>
                             <Row>
                                 <Col md="3">
+
                                     <AppCard heading="Confirmed" fontColor="red" backgroundColor="rgba(255,7,58,.12549)" cases = {this.state.confirmed} diff={this.state.diffConfirmed} sign={this.state.isPlusSign} hoverClass='confirmed-hover'/>
                                 </Col>
                                 <Col md="3">
                                     <AppCard heading="Active" fontColor="#037AFB" backgroundColor="rgba(0,123,255,.0627451)" cases = {this.state.active} diff={this.state.diffActive} sign={this.state.isPlusSign} hoverClass="active-hover"/>
+
                                 </Col>
                                 <Col md="3">
                                     <AppCard heading="Recovered" fontColor="#50A745" backgroundColor="rgba(40,167,69,.12549)" cases = {this.state.recovered} diff={this.state.diffRecovered} sign={this.state.isPlusSign} hoverClass="recovered-hover"/>

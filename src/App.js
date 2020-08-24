@@ -25,6 +25,7 @@ function App() {
     <ThemeContext.Provider value = {themeHook}>
       <div className="App" style={themeHook ? {backgroundColor:'white',color:'black'}: {backgroundColor:'#181818',color:'white'}}>
         
+
         <Router>
           <AppNavBar changeTheme={toggleTheme} searchedState={searchedState}/>
           <Switch>
@@ -42,6 +43,8 @@ function App() {
           </Switch>
         </Router>
          
+
+
         
       </div>
     </ThemeContext.Provider>

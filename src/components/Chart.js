@@ -43,7 +43,7 @@ class Chart extends Component {
         const data={
             labels:this.props.date,
             datasets:[{
-                // backgroundColor: this.props.bgColor,
+                backgroundColor: this.props.bgColor,
                 borderColor: this.props.bdColor,
                 label:'Corona Cases',
                 data:this.props.speData
@@ -67,7 +67,7 @@ class Chart extends Component {
         }
 
         return (
-            <div style={{backgroundColor:this.props.bgColor,marginBottom:"50px",padding:"5px",borderRadius:"3px"}}>
+            <div style={{backgroundColor:this.props.bggColor,marginBottom:"50px",padding:"5px",borderRadius:"3px"}}>
                 <Line 
                         options={options}
                         data={data}/>
