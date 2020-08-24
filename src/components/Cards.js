@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import AppCard from './AppCard';
 import { Container, Row, Col } from 'reactstrap';
-import style from './cards.module.css';
-import ThemeContext from './ThemeContext'
+
+import './cards.css';
+
+
 
 
 
@@ -49,29 +51,23 @@ class Cards extends Component {
     }
     render() {
         return (
-            <ThemeContext.Consumer>
-                {(theme)=>(
+            
                     <div>
                         <Container className={style.cards}>
                             <Row>
                                 <Col md="3">
-                                    <AppCard 
-                                        heading="Confirmed" 
-                                        fontColor="red" 
-                                        backgroundColor="rgba(255,7,58,.12549)" 
-                                        cases = {this.state.confirmed} 
-                                        diffConfirmed={this.state.diffConfirmed} 
-                                        sign={this.state.isPlusSign}
-                                        hover={style.cardC}/>
+
+                                    <AppCard heading="Confirmed" fontColor="red" backgroundColor="rgba(255,7,58,.12549)" cases = {this.state.confirmed} diff={this.state.diffConfirmed} sign={this.state.isPlusSign} hoverClass='confirmed-hover'/>
                                 </Col>
                                 <Col md="3">
-                                    <AppCard heading="Active" fontColor="#037AFB" backgroundColor="rgba(0,123,45,.0627451)" cases = {this.state.active} diffActive={this.state.diffActive} sign={this.state.isPlusSign}/>
+                                    <AppCard heading="Active" fontColor="#037AFB" backgroundColor="rgba(0,123,255,.0627451)" cases = {this.state.active} diff={this.state.diffActive} sign={this.state.isPlusSign} hoverClass="active-hover"/>
+
                                 </Col>
                                 <Col md="3">
-                                    <AppCard heading="Recovered" fontColor="#50A745" backgroundColor="rgba(40,167,69,.12549)" cases = {this.state.recovered} diffRecovered={this.state.diffRecovered} sign={this.state.isPlusSign}/>
+                                    <AppCard heading="Recovered" fontColor="#50A745" backgroundColor="rgba(40,167,69,.12549)" cases = {this.state.recovered} diff={this.state.diffRecovered} sign={this.state.isPlusSign} hoverClass="recovered-hover"/>
                                 </Col>
                                 <Col md="3">
-                                    <AppCard heading="Deaths" fontColor="gray" backgroundColor="rgba(108,117,125,.0627451)" cases = {this.state.deaths} diffDeath={this.state.diffDeath} sign={this.state.isPlusSign}/>
+                                    <AppCard heading="Deaths" fontColor="gray" backgroundColor="rgba(108,117,125,.0627451)" cases = {this.state.deaths} diff={this.state.diffDeath} sign={this.state.isPlusSign} hoverClass="death-hover"/>
                                 </Col>
                             </Row>
                         </Container>
@@ -80,9 +76,8 @@ class Cards extends Component {
                 )}
                 
 
-            </ThemeContext.Consumer>
-        );
-    }
+            
+       
 }
 
 export default Cards;

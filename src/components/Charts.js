@@ -64,7 +64,7 @@ class Charts extends Component {
             <div>
                 <Container>
                     <Row>
-                        <Col md="12">
+                        <Col md="6">
                             <Chart 
                                 speData={this.state.totalConfirmed} 
                                 date={this.state.date} 
@@ -76,7 +76,7 @@ class Charts extends Component {
                                 step={10000}/>
                             
                         </Col>
-                        <Col md="12">
+                        <Col md="6">
                             <Chart 
                                 speData={this.state.totalRecovered} 
                                 date={this.state.date} 
@@ -88,7 +88,7 @@ class Charts extends Component {
                                 step={10000}/>
 
                         </Col>
-                        <Col md="12">
+                        <Col md="6">
                             <Chart 
                                 speData={this.state.totalDeaths} 
                                 date={this.state.date} 
@@ -100,7 +100,7 @@ class Charts extends Component {
                                 step={500}/>
 
                         </Col>
-                        <Col md="12">
+                        <Col md="6">
 
                             <Chart 
                             speData={this.state.totalActive} 

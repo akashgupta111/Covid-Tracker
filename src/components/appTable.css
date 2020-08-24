@@ -12,11 +12,17 @@ table{
     /* border-spacing: 10px; */
     border-radius: 2px;
 }
-th{
-    background-color: #dddddd;
-    color: black;
+.dark th{
+    background-color: #4e4b4b;
+    /* color: black; */
 }
-tr:nth-child(even) {
-    background-color: #dddddd;
-    color:black
+.dark tr:nth-child(even) {
+    background-color: #4e4b4b;
+    /* color:black */
+}
+.light th{
+    background-color:  #dddddd;
+}
+.light tr:nth-child(even){
+    background-color:  #dddddd;
 }
