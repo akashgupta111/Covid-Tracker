@@ -81,7 +81,8 @@ function AppNavBar (props) {
     return (
         <div className="nav-container">
             <Navbar className="pd-5" color='dark' dark expand="md">
-                <NavbarBrand href="/">India Covid-19 Tracker</NavbarBrand>
+
+                <NavbarBrand href="/"><img src={require('../image/coronalogo2.png')} style={{width: '40px', marginRight: '10px'}}/>India Covid-19 Tracker</NavbarBrand>
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
                 <div className="nav-input-div">

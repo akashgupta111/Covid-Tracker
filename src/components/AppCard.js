@@ -23,12 +23,13 @@ class AppCard extends Component {
         
         var convertedCases = this.numberSystemConversion(cases);
         var convertedDiff = this.numberSystemConversion(diff)
+        console.log(typeof(convertedDiff), heading)
         return (
             <div >
                 <Card className={`app-card ${hoverClass}`}>
                     <CardBody style={{color:fontColor}}>
                         <CardTitle>{heading}</CardTitle>
-                        {diff?<CardSubtitle>{sign? <span>+</span>:''} {convertedDiff}</CardSubtitle>:''}
+                        <CardSubtitle>{sign? <span>+</span>:''} {convertedDiff}</CardSubtitle>
                         <CardText className="card-text">{convertedCases}</CardText>
                     </CardBody>
                 </Card>
