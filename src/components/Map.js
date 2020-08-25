@@ -1,93 +1,145 @@
 import React, { Component } from 'react';
 import Chart from 'react-google-charts';
 import './Map.css';
+import { Container, Row } from 'reactstrap';
+import ThemeContext from './ThemeContext';
 
 class Map extends Component {
     state={
 
-        confirmed:[]
+        confirmed:[],
+        recoverd: [],
+        deaths: [],
+        type: 'confirmed'
     }
+
+
+    mapData = (result, type) =>{
+        let mapArr= result.statewise.map(item=>{
+            return ['IN-'+item.statecode,Number(item[type])]
+        })
+
+            mapArr.shift();
+            mapArr.unshift(['City',type])
+            console.log('s',mapArr);
+            this.setState({
+                [type]:mapArr
+            })
+
+
+    }
+
     componentDidMount(){
         fetch('https://api.covid19india.org/data.json')
         .then(resp=>resp.json())
         .then(result=>{
-            let mapArr= result.statewise.map(item=>{
-                            return ['IN-'+item.statecode,item.confirmed]
-                        })
-                // console.log("map",mapArr);
-                 mapArr.shift();
-                 mapArr.unshift(['City','Confirmed'])
-                console.log('s',mapArr);
-                this.setState({
-                    confirmed:mapArr
-                })
+            // let mapArr= result.statewise.map(item=>{
+            //                 return ['IN-'+item.statecode,Number(item.confirmed)]
+            //             })
+            //     // console.log("map",mapArr);
+            //      mapArr.shift();
+            //      mapArr.unshift(['City','Confirmed'])
+            //     console.log('s',mapArr);
+            //     this.setState({
+            //         confirmed:mapArr
+            //     })
+            this.mapData(result, 'confirmed');
+            this.mapData(result, 'recovered');
+            this.mapData(result, 'deaths');
          })
     }
+
     render() {
         return (
-            <div>
+            <ThemeContext.Consumer>
+                {(theme)=>(
+                <div>
+                    
+                    <Container>
+                    
+                        <Row>
+                            <div style={{marginBottom: '30px'}}>
+                                <button className='map-btns confirmed-btn' onClick={()=>this.setState({type:'confirmed'})}>Confirmed</button>
+                                <button className='map-btns recovered-btn' onClick={()=>this.setState({type:'recovered'})}>Recovered</button>
+                                <button className='map-btns deaths-btn' onClick={()=>this.setState({type:'deaths'})}>Deaths</button>
+                            </div>
+                            {this.state.type==='confirmed'? <Chart 
+                                width={'100%'}
+                                height={'100%'}
+                                chartType="GeoChart"
+                                data={
+                                            
+                                                this.state.confirmed
+                                }
+                                options={{
+                                region: 'IN',
+                                domain: 'IN',
+                                displayMode: 'regions',
+                                resolution: 'provinces',
+                                datalessRegionColor: !theme ?'#181818': 'white',
+                                backgroundColor: !theme ?'#181818': 'white',
+                                colorAxis: { colors: ['white', '#e64c4c','red', '#140606'] },
+                                magnifyingGlass: {enable: false, zoomFactor: 200}
 
-                
-                <Chart
-  width={'500px'}
-  height={'300px'}
-  chartType="GeoChart"
-  data={
-                    // ['city','City', 'Recovered'],
-                    // [ 'IN-UP','Uttar Pradesh', 0],
-                    // ['IN-MH','Maharashtra', 1],
-                    // ['IN-BR','Bihar', 2],
-                    // ['IN-WB','West Bengal', 3],
-                    // ['IN-MP','Madhya Pradesh', 3],
-                    // ['IN-TN','Tamil Nadu', 10],
-                    // ['IN-RJ','Rajasthan', 33],
-                    // ['IN-KA','Karnataka', 29],
-                    // ['IN-GJ','Gujarat', 34],
-                    // ['IN-AP','Andhra Pradesh', 32],
-                    // ['IN-OR','Orissa', 33],
-                    // ['IN-TG','Telangana', 33],
-                    // ['IN-KL','Kerala', 31],
-                    // ['IN-JH','Jharkhand', 29],
-                    // ['IN-AS','Assam', 28],
-                    // ['IN-PB','Punjab', 30],
-                    // ['IN-CT','Chhattisgarh', 33],
-                    // ['IN-HR','Haryana', 30],
-                    // ['IN-JK','Jammu and Kashmir', 20],
-                    // ['IN-UT','Uttarakhand', 28],
-                    // ['IN-HP','Himachal Pradesh', 17],
-                    // ['IN-TR','Tripura', 31],
-                    // ['IN-ML','Meghalaya', 21],
-                    // ['IN-MN','Manipur', 22],
-                    // ['IN-NL','Nagaland', 22],
-                    // ['IN-GA','Goa', 32],
-                    // ['IN-AR', 'Arunachal Pradesh', 33],
-                    // ['IN-MZ','Mizoram', 23],
-                    // ['IN-SK','Sikkim', 24],
-                    // ['IN-DL','Delhi', 31],
-                    // ['IN-PY','Puducherry', 33],
-                    // ['IN-CH','Chandigarh', 30],
-                    // ['IN-AN','Andaman and Nicobar Islands', 30],
-                    // ['IN-DN','Dadra and Nagar Haveli', 30],
-                    // ['IN-DD','Daman and Diu', 29],
-                    // ['IN-LD','Lakshadweep', 31]
-                    this.state.confirmed
-  }
-  options={{
-    region: 'IN',
-    domain: 'IN',
-    displayMode: 'regions',
-    resolution: 'provinces',
-    colorAxis: { colors: ['white', 'red'] },
-}}
-  // Note: you will need to get a mapsApiKey for your project.
-  // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
-//   mapsApiKey="YOUR_KEY_HERE"
-  rootProps={{ 'data-testid': '1' }}
-/>
+                                }}
+                                // Note: you will need to get a mapsApiKey for your project.
+                                // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+                                //   mapsApiKey="YOUR_KEY_HERE"
+                                rootProps={{ 'data-testid': '1' }}
+                            /> : null}
+                            {this.state.type==='recovered' ? <Chart
+                                width={'100%'}
+                                height={'100%'}
+                                chartType="GeoChart"
+                                data={
+                                            
+                                                this.state.recovered
+                                }
+                                options={{
+                                region: 'IN',
+                                domain: 'IN',
+                                displayMode: 'region',
+                                resolution: 'provinces',
+                                datalessRegionColor: !theme ?'#181818': 'white',
+                                backgroundColor: !theme ?'#181818': 'white',
+                                colorAxis: { colors: ['#b3ffcb','#33ff70', 'green','#001a08'] },
+                                }}
+                                // Note: you will need to get a mapsApiKey for your project.
+                                // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+                                //   mapsApiKey="YOUR_KEY_HERE"
+                                rootProps={{ 'data-testid': '1' }}
+                            /> : null}
+                            {this.state.type==='deaths' ? <Chart
+                                width={'100%'}
+                                height={'100%'}
+                                chartType="GeoChart"
+                                data={
+                                            
+                                                this.state.deaths
+                                }
+                                options={{
+                                region: 'IN',
+                                domain: 'IN',
+                                displayMode: 'regions',
+                                resolution: 'provinces',
+                                datalessRegionColor: !theme ?'#181818': 'white',
+                                backgroundColor: !theme ?'#181818': 'white',
+                                colorAxis: { colors: ['#e6e6e6','#595959','#a6a6a6', '#0d0d0d'] },
+                                }}
+                                // Note: you will need to get a mapsApiKey for your project.
+                                // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+                                //   mapsApiKey="YOUR_KEY_HERE"
+                                rootProps={{ 'data-testid': '1' }}
+                            /> : null}
+                        </Row>
+                    </Container> 
+                    
 
-        
+            
 
-            </div>
+                </div>
+                )}
+            </ThemeContext.Consumer>
         );
     }
 }

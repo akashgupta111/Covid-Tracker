@@ -4,10 +4,6 @@ import { Container, Row, Col } from 'reactstrap';
 
 import './cards.css';
 
-
-
-
-
 class Cards extends Component {
     state={
         confirmed:0,
@@ -17,8 +13,10 @@ class Cards extends Component {
         diffActive:0,
         diffRecovered:0,
         diffDeath:0,
-        isPlusSign:true
+        isPlusSign: true
     }
+
+
     componentDidMount(){
         fetch('https://api.covid19india.org/data.json')
         .then(resp=>resp.json())
@@ -32,10 +30,11 @@ class Cards extends Component {
                 deaths:result.statewise[0].deaths,
                 diffConfirmed:Number(result.cases_time_series[result.cases_time_series.length-1].dailyconfirmed),
                 diffRecovered:Number(result.cases_time_series[result.cases_time_series.length-1].dailyrecovered),
-                diffActive: Number(result.cases_time_series[result.cases_time_series.length-1].dailyconfirmed) - Number(result.cases_time_series[result.cases_time_series.length-1].dailyrecovered),
+                diffActive: Number(result.cases_time_series[result.cases_time_series.length-1].dailyconfirmed) - Number(result.cases_time_series[result.cases_time_series.length-1].dailyrecovered)-
+                Number(result.cases_time_series[result.cases_time_series.length-1].dailydeceased),
                 diffDeath: Number(result.cases_time_series[result.cases_time_series.length-1].dailydeceased)
             },()=>{
-                if(this.state.diffConfirmed<0){
+                if(this.state.diffActive<0 ){
                     this.setState({
                         isPlusSign:false
                     })
@@ -53,7 +52,7 @@ class Cards extends Component {
         return (
             
                     <div>
-                        <Container className={style.cards}>
+                        <Container className='cards'>
                             <Row>
                                 <Col md="3">
 
