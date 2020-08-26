@@ -14,7 +14,6 @@ class AppTable extends Component {
         fetch('https://api.covid19india.org/data.json')
         .then((resp)=>resp.json())
         .then(result=>{
-            console.log(result.statewise);
             this.setState({
                 states:result.statewise
             })

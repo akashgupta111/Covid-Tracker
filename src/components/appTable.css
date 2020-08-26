@@ -7,18 +7,14 @@ table{
     border-collapse: unset !important;
 }
 .table-container td,th {
-    /* border:1px solid black; */
     width:50px;
-    /* border-spacing: 10px; */
     border-radius: 2px;
 }
 .dark th{
     background-color: #4e4b4b;
-    /* color: black; */
 }
 .dark tr:nth-child(even) {
     background-color: #4e4b4b;
-    /* color:black */
 }
 .light th{
     background-color:  #dddddd;

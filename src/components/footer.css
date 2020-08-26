@@ -1,0 +1,17 @@
+.social-div{
+    width:10%;
+    margin:auto;
+    display:flex;
+    justify-content:space-around;
+    padding-bottom:100px
+}
+
+@media only screen and (max-width: 600px){
+    .social-div{
+        width: 20%;
+        margin:auto;
+        display:flex;
+        justify-content:space-around;
+        padding-bottom:100px
+    }
+}

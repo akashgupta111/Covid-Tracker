@@ -17,19 +17,12 @@ class Charts extends Component {
         fetch('https://api.covid19india.org/data.json')
         .then(resp=>resp.json())
         .then(result=>{
-            // console.log(result.cases_time_series)
-            // let newArr = [];
             let totalConfirmedArr=[];
             let dateArr=[];
             let totalActiveArr=[];
             let totalRecoveredArr=[];
             let totalDeathsArr=[];
             result.cases_time_series.forEach(item=>{
-                // const obj = {
-                //     date:item.date,
-                //     totalConfirmed:item.totalconfirmed,
-                // }
-                // newArr.push(obj);
                 totalConfirmedArr.push(item.dailyconfirmed)
                 dateArr.push(item.date)
                 totalActiveArr.push(item.dailyconfirmed - item.dailyrecovered - item.dailydeceased)
@@ -41,17 +34,12 @@ class Charts extends Component {
             var slicedRecovered = totalRecoveredArr.slice(-30);
             var slicedDeaths = totalDeathsArr.slice(-30);
             var slicedActive = totalActiveArr.slice(-30)
-            // console.log(dateArr);
             this.setState({
-                // data:newArr,
                 totalConfirmed:slicedConfirmedArr,
                 date:slicedDateArr,
                 totalRecovered:slicedRecovered,
                 totalDeaths:slicedDeaths,
                 totalActive: slicedActive
-            },()=>{
-                // console.log('totalConfirmed',this.state.totalConfirmed)
-                // console.log('date',this.state.date)
             })
         })
     }

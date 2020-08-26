@@ -21,8 +21,6 @@ class Cards extends Component {
         fetch('https://api.covid19india.org/data.json')
         .then(resp=>resp.json())
         .then(result=>{
-            // console.log('confirmed',result.statewise[0].confirmed)
-            // console.log('casetime',result.cases_time_series[result.cases_time_series.length-1])
             this.setState({
                 confirmed:result.statewise[0].confirmed,
                 active:result.statewise[0].active,

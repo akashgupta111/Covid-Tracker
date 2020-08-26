@@ -1,11 +1,9 @@
 import React,{useState} from 'react';
-import logo from './logo.svg';
 import './App.css';
 import AppNavBar from './components/AppNavBar'
 import Cards from './components/Cards';
 import AppTable from './components/AppTable'
 import Charts from './components/Charts';
-import VisualLayout from './components/VisualLayout';
 import ThemeContext from './components/ThemeContext';
 import Map from './components/Map';
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
@@ -38,7 +36,6 @@ function App() {
               <Cards/>
               <AppTable/>
               <Charts/>
-              {/* <VisualLayout/>  */}
               <Map/>
             </Route>
           </Switch>

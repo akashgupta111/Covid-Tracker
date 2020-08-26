@@ -42,14 +42,11 @@ function AppNavBar (props) {
             else{
                 setSearchedState([])
             }
-            
-            console.log('stateData',searchedState);
             const stateName = result.statewise.map(item=>(
                 item.state
             ));
             stateName.shift();
             setStateName(stateName);
-            console.log('name',stateName)
         })
     },[input]);
 
@@ -57,9 +54,7 @@ function AppNavBar (props) {
    
 
     const toggleTheme = () =>{
-        // console.log(theme ? themes.dark : themes.light)
         props.changeTheme()
-        // setTheme(!theme)
     }
     useEffect(()=>{
         console.log('inp',input)
@@ -70,7 +65,6 @@ function AppNavBar (props) {
             suggestions = stateName.sort().filter(v=>regex.test(v));
         }
         setSuggestions(suggestions);
-        console.log('suggestions',suggestions)
     },[input])
     const changeHandler =(event)=>{
         setInput(event.target.value);
@@ -96,8 +90,7 @@ function AppNavBar (props) {
         setTimeout(()=>{
             setSuggestions([]);
         },0)
-        // const input =document.getElementsByTagName('input')[0];
-        // console.log(input)
+        
         
         
         
@@ -111,7 +104,6 @@ function AppNavBar (props) {
     }
     const searching = () =>{
         if(!input.length || !searchedState.length){
-            console.log('wrong validation')
             setValidation('failiure')
         }
         else{

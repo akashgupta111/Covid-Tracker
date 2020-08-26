@@ -33,16 +33,6 @@ class Map extends Component {
         fetch('https://api.covid19india.org/data.json')
         .then(resp=>resp.json())
         .then(result=>{
-            // let mapArr= result.statewise.map(item=>{
-            //                 return ['IN-'+item.statecode,Number(item.confirmed)]
-            //             })
-            //     // console.log("map",mapArr);
-            //      mapArr.shift();
-            //      mapArr.unshift(['City','Confirmed'])
-            //     console.log('s',mapArr);
-            //     this.setState({
-            //         confirmed:mapArr
-            //     })
             this.mapData(result, 'confirmed');
             this.mapData(result, 'recovered');
             this.mapData(result, 'deaths');
@@ -80,9 +70,7 @@ class Map extends Component {
                                 backgroundColor: !theme ?'#181818': 'white',
                                 colorAxis: { colors: ['white', '#e64c4c','red', '#140606'] },
                                 }}
-                                // Note: you will need to get a mapsApiKey for your project.
-                                // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
-                                //   mapsApiKey="YOUR_KEY_HERE"
+                                
                                 rootProps={{ 'data-testid': '1' }}
                             /> : null}
                             {this.state.type==='recovered' ? <Chart
