@@ -22,6 +22,16 @@ class AppTable extends Component {
             
         })
     }
+    numberSystemConversion =(cases) =>{
+        var x= Number(cases);
+        x=x.toString();
+        var lastThree = x.substring(x.length-3);
+        var otherNumbers = x.substring(0,x.length-3);
+        if(otherNumbers != '')
+            lastThree = ',' + lastThree;
+        var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+        return res;
+    }
     
     render() {
         return (
@@ -41,10 +51,10 @@ class AppTable extends Component {
                                         {this.state.states.map((item,index)=>(
                                             <tr key={item+index}>
                                                 <td>{item.state}</td>
-                                                <td>{item.confirmed}</td>
-                                                <td>{item.active}</td>
-                                                <td>{item.confirmed-item.active-item.deaths}</td>
-                                                <td>{item.deaths}</td>
+                                                <td>{this.numberSystemConversion(item.confirmed)}</td>
+                                                <td>{this.numberSystemConversion(item.active)}</td>
+                                                <td>{this.numberSystemConversion(item.confirmed-item.active-item.deaths)}</td>
+                                                <td>{this.numberSystemConversion(item.deaths)}</td>
                                             </tr>
                                         ))}
                                         

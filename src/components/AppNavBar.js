@@ -23,12 +23,12 @@ function AppNavBar (props) {
     const [isOpen, setIsOpen] = useState(false);
     const [input,setInput] = useState('');
     const [searchedState,setSearchedState] =useState([]);
+    const [stateName,setStateName] = useState([]);
+    const [suggestions,setSuggestions] = useState([]);
     const [validation,setValidation]=useState('');
     const theme = useContext(ThemeContext);
     const history = useHistory();
     
-    const [redirect , setRedirect] = useState(false)
-
     useEffect(()=>{
         fetch('https://api.covid19india.org/data.json')
         .then(resp=>resp.json())
@@ -43,7 +43,13 @@ function AppNavBar (props) {
                 setSearchedState([])
             }
             
-            console.log('stateData',searchedState)
+            console.log('stateData',searchedState);
+            const stateName = result.statewise.map(item=>(
+                item.state
+            ));
+            stateName.shift();
+            setStateName(stateName);
+            console.log('name',stateName)
         })
     },[input]);
 
@@ -55,13 +61,52 @@ function AppNavBar (props) {
         props.changeTheme()
         // setTheme(!theme)
     }
+    useEffect(()=>{
+        console.log('inp',input)
+        let suggestions =[];
+        if(input.length > 0){
+            console.log(input.length)
+            const regex = new RegExp(`^${input}`,'i');
+            suggestions = stateName.sort().filter(v=>regex.test(v));
+        }
+        setSuggestions(suggestions);
+        console.log('suggestions',suggestions)
+    },[input])
+    const changeHandler =(event)=>{
+        setInput(event.target.value);
+           
+    }
+    const renderSuggestions = ()=>{
+        if(suggestions.length ===0){
+            return null;
+        }
+        return (
+            <div className="search-dropdown">
+                <ul style={{listStyle:'none',padding:'10px'}} >
+                    {suggestions.map(item=><li className="search-dropdown-list" onClick={()=>suggestionSelected(item)}>{item}</li>)}
+                </ul>
+
+             </div>
+        )
+    }
+   
+    
+    const suggestionSelected =(value) =>{
+        setInput(value);
+        setTimeout(()=>{
+            setSuggestions([]);
+        },0)
+        // const input =document.getElementsByTagName('input')[0];
+        // console.log(input)
+        
+        
+        
+        console.log('updated')  
+        
+    }
     const searchHandler = (event) =>{
         if(event.key === "Enter"){
-            searching()
-            
-            console.log('Redirect' ,input);
-            
-            
+            searching();
         }
     }
     const searching = () =>{
@@ -82,17 +127,20 @@ function AppNavBar (props) {
         <div className="nav-container">
             <Navbar className="pd-5" color='dark' dark expand="md">
 
-                <NavbarBrand href="/"><img src={require('../image/coronalogo2.png')} style={{width: '40px', marginRight: '10px'}}/>India Covid-19 Tracker</NavbarBrand>
+                <NavbarBrand href="/" ><img src={require('../image/coronalogo2.png')} style={{width: '40px', marginRight: '7px'}}/>India Covid-19 Tracker</NavbarBrand>
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
                 <div className="nav-input-div">
                     <span>{<SearchOutlinedIcon/>}</span>
-                    <div style={{width:'100%'}}>
+                    <div style={{display:'inline-block',width:'80%'}}>
 
-                    <Input value={input} className="nav-input" type="text" placeholder="Search by State" onChange ={(e)=>{setInput(e.target.value)}} onKeyPress={searchHandler} invalid={validation==="failiure"}/>
-                    <FormFeedback style={{marginTop:'0px'}}>Please type valid state</FormFeedback>
+                        <Input value={input} className="nav-input" type="text" placeholder="Search by State" onChange ={changeHandler} onKeyPress={searchHandler} invalid={validation==="failiure"}/>
+                        
+                        <FormFeedback style={{marginTop:'0px'}}>Please type valid state</FormFeedback>
                     </div>
+                    {renderSuggestions()}
                 </div>
+                
                 
                 
                 <Nav className="ml-auto" navbar>
@@ -100,7 +148,7 @@ function AppNavBar (props) {
                     <NavbarText><Link to="/" style={{color:'gray'}}><HomeOutlinedIcon/></Link></NavbarText>
                     </NavItem>
                     <NavItem>
-                    <NavbarText className="ml-3" onClick={toggleTheme}>{theme?<WbSunnyOutlinedIcon style={{color:'yellow'}}/>:<Brightness2OutlinedIcon style={{color:'purple'}}/>}</NavbarText>
+                    <NavbarText className="theme-icon" onClick={toggleTheme}>{theme?<WbSunnyOutlinedIcon style={{color:'yellow'}}/>:<Brightness2OutlinedIcon style={{color:'purple'}}/>}</NavbarText>
                     </NavItem>
                     
                 </Nav>

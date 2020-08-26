@@ -3,6 +3,7 @@ import {
     Card, CardImg, CardText, CardBody,
     CardTitle, CardSubtitle, Button
   } from 'reactstrap';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import './appCard.css'
 
 
@@ -29,7 +30,7 @@ class AppCard extends Component {
                 <Card className={`app-card ${hoverClass}`}>
                     <CardBody style={{color:fontColor}}>
                         <CardTitle>{heading}</CardTitle>
-                        <CardSubtitle>{sign? <span>+</span>:''} {convertedDiff}</CardSubtitle>
+                        {convertedDiff=='0'?<FavoriteIcon style={{fontSize:'15px'}}/>:<CardSubtitle>{convertedDiff[0]=='-'?'':<span>+</span>} {convertedDiff}</CardSubtitle>}
                         <CardText className="card-text">{convertedCases}</CardText>
                     </CardBody>
                 </Card>

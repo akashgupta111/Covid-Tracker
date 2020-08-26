@@ -83,7 +83,7 @@ const State = props => {
             <Container className="mt-5">
                 <Row>
                     <Col md='5'>
-                        <h1>{props.stateData.length?props.stateData[0].state:''}</h1>
+                        <h1 style={{display:'inline-block',color:'red',backgroundColor:'rgba(255,7,58,.12549)'}}>{props.stateData.length?props.stateData[0].state:''}</h1>
                     </Col>
                 </Row>
                 <Row className="mt-5">
