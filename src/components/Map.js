@@ -16,11 +16,11 @@ class Map extends Component {
 
     mapData = (result, type) =>{
         let mapArr= result.statewise.map(item=>{
-            return ['IN-'+item.statecode,Number(item[type])]
+            return ['IN-'+item.statecode,item.state,Number(item[type])]
         })
 
             mapArr.shift();
-            mapArr.unshift(['City',type])
+            mapArr.unshift(['City','state', type])
             console.log('s',mapArr);
             this.setState({
                 [type]:mapArr
