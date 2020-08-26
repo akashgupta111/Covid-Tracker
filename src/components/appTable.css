@@ -1,7 +1,24 @@
 .table-container{
-    margin-top:50px
+    margin-top:50px;
+    margin-bottom: 50px;
+}
+table{
+    border-spacing: 2px;
+    border-collapse: unset !important;
 }
 .table-container td,th {
-    border:1px solid black;
-    width:50px
+    width:50px;
+    border-radius: 2px;
+}
+.dark th{
+    background-color: #4e4b4b;
+}
+.dark tr:nth-child(even) {
+    background-color: #4e4b4b;
+}
+.light th{
+    background-color:  #dddddd;
+}
+.light tr:nth-child(even){
+    background-color:  #dddddd;
 }
