@@ -3,41 +3,7 @@ import React, { Component } from 'react';
 import {Line} from 'react-chartjs-2';
 
 class Chart extends Component {
-    // state={
-    //     data:[],
-    //     totalConfirmed:[],
-    //     date:[]
-    // }
-    // componentDidMount(){
-    //     fetch('https://api.covid19india.org/data.json')
-    //     .then(resp=>resp.json())
-    //     .then(result=>{
-    //         // console.log(result.cases_time_series)
-    //         // let newArr = [];
-    //         let totalConfirmedArr=[];
-    //         let dateArr=[];
-    //         result.cases_time_series.forEach(item=>{
-    //             // const obj = {
-    //             //     date:item.date,
-    //             //     totalConfirmed:item.totalconfirmed,
-    //             // }
-    //             // newArr.push(obj);
-    //             totalConfirmedArr.push(item.totalconfirmed)
-    //             dateArr.push(item.date)
-    //         })
-    //         var slicedConfirmedArr = totalConfirmedArr.slice(-30);
-    //         var slicedDateArr = dateArr.slice(-30)
-    //         // console.log(dateArr);
-    //         this.setState({
-    //             // data:newArr,
-    //             totalConfirmed:slicedConfirmedArr,
-    //             date:slicedDateArr
-    //         },()=>{
-    //             console.log('totalConfirmed',this.state.totalConfirmed)
-    //             console.log('date',this.state.date)
-    //         })
-    //     })
-    // }
+    
     
     render (){
         const data={
@@ -55,7 +21,15 @@ class Chart extends Component {
                 text: this.props.title
             },
             scales:{
+                xAxes:[{
+                    gridLines: {
+                        drawOnChartArea: false,
+                    }
+                }],
                 yAxes:[{
+                    gridLines: {
+                        drawOnChartArea: false,
+                    },
                     ticks:{
                         min:this.props.min,
                         max: Math.max(...this.props.speData)+ (100-(Math.max(...this.props.speData)%100)),

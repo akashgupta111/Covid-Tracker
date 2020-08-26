@@ -79,8 +79,6 @@ class Map extends Component {
                                 datalessRegionColor: !theme ?'#181818': 'white',
                                 backgroundColor: !theme ?'#181818': 'white',
                                 colorAxis: { colors: ['white', '#e64c4c','red', '#140606'] },
-                                magnifyingGlass: {enable: false, zoomFactor: 200}
-
                                 }}
                                 // Note: you will need to get a mapsApiKey for your project.
                                 // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings

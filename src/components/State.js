@@ -74,6 +74,8 @@
 import React,{useState,useEffect} from 'react';
 import { Container, Row,Col } from 'reactstrap';
 import AppCard from './AppCard'
+import BarChart from './BarChart'
+import Barchart from './BarChart';
 
 
 const State = props => {
@@ -130,9 +132,11 @@ const State = props => {
                         />
                     </Col>
                 </Row>
-                <Row>
-
-                </Row>
+                
+                    <BarChart
+                        
+                    />
+                
             </Container>
            
 

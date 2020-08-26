@@ -50,8 +50,8 @@ class Charts extends Component {
                 totalDeaths:slicedDeaths,
                 totalActive: slicedActive
             },()=>{
-                console.log('totalConfirmed',this.state.totalConfirmed)
-                console.log('date',this.state.date)
+                // console.log('totalConfirmed',this.state.totalConfirmed)
+                // console.log('date',this.state.date)
             })
         })
     }
