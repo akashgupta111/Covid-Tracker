@@ -65,7 +65,7 @@ function AppNavBar (props) {
             suggestions = stateName.sort().filter(v=>regex.test(v));
         }
         setSuggestions(suggestions);
-    },[input])
+    },[input,stateName])
     const changeHandler =(event)=>{
         setInput(event.target.value);
            
@@ -119,7 +119,7 @@ function AppNavBar (props) {
         <div className="nav-container">
             <Navbar className="pd-5" color='dark' dark expand="md">
 
-                <NavbarBrand href="/" ><img src={require('../image/coronalogo2.png')} style={{width: '40px', marginRight: '7px'}}/>India Covid-19 Tracker</NavbarBrand>
+                <NavbarBrand href="/" ><img src={require('../image/coronalogo2.png')} style={{width: '40px', marginRight: '7px'}} alt="logo"/>India Covid-19 Tracker</NavbarBrand>
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
                 <div className="nav-input-div">
