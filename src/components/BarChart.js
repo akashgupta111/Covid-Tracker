@@ -61,7 +61,8 @@ export default class Barchart extends Component {
             labels: this.state.states,
             datasets: [
                 {   
-                    backgroundColor: 'red',
+                    barPercentage: 1,
+                    backgroundColor: '#CB0F33',
                     label:'State Cases',
                     data: this.state.stconfirmed
                 }
@@ -71,7 +72,9 @@ export default class Barchart extends Component {
         const optionsCon= {
             title:{
                 display :true,
-                text: 'Confirmed'
+                text: 'Confirmed',
+                fontSize: 16,
+                fontColor: '#CB0F33'
             },
             scales:{
                 xAxes:[{
@@ -96,7 +99,7 @@ export default class Barchart extends Component {
             labels: this.state.states,
             datasets: [
                 {   
-                    backgroundColor: 'blue',
+                    backgroundColor: '#1681F6',
                     label:'State Cases',
                     data: this.state.stactive
                 }
@@ -106,7 +109,9 @@ export default class Barchart extends Component {
         const optionsAct= {
             title:{
                 display :true,
-                text: 'Active'
+                text: 'Active',
+                fontSize: 16,
+                fontColor: '#1681F6'
             },
             scales:{
                 xAxes:[{
@@ -131,7 +136,7 @@ export default class Barchart extends Component {
             labels: this.state.states,
             datasets: [
                 {   
-                    backgroundColor: 'green',
+                    backgroundColor: '#43F00A',
                     label:'State Cases',
                     data: this.state.strecovered
                 }
@@ -141,7 +146,9 @@ export default class Barchart extends Component {
         const optionsRec= {
             title:{
                 display :true,
-                text: 'Recovered'
+                text: 'Recovered',
+                fontSize: 16,
+                fontColor: '#43F00A'
             },
             scales:{
                 xAxes:[{
@@ -176,7 +183,9 @@ export default class Barchart extends Component {
         const optionsDea= {
             title:{
                 display :true,
-                text: 'Deaths'
+                text: 'Deaths',
+                fontSize: 16,
+                fontColor: 'gray'
             },
             scales:{
                 xAxes:[{
