@@ -9,7 +9,8 @@ import VisualLayout from './components/VisualLayout';
 import ThemeContext from './components/ThemeContext';
 import Map from './components/Map';
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
-import State from './components/State'
+import State from './components/State';
+import Footer from './components/Footer'
 
 function App() {
   const [themeHook,setThemeHook] = useState(0);
@@ -41,7 +42,9 @@ function App() {
               <Map/>
             </Route>
           </Switch>
+          <Footer/>
         </Router>
+        
          
 
 
