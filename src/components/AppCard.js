@@ -14,13 +14,13 @@ class AppCard extends Component {
     x=x.toString();
     var lastThree = x.substring(x.length-3);
     var otherNumbers = x.substring(0,x.length-3);
-    if(otherNumbers != '')
+    if(otherNumbers !== '')
         lastThree = ',' + lastThree;
     var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
     return res;
    }
     render() {
-        const { heading, fontColor, backgroundColor, cases , diff ,sign,hoverClass} = this.props;
+        const { heading, fontColor, cases , diff ,hoverClass} = this.props;
         
         var convertedCases = this.numberSystemConversion(cases);
         var convertedDiff = this.numberSystemConversion(diff)
@@ -30,7 +30,7 @@ class AppCard extends Component {
                 <Card className={`app-card ${hoverClass}`}>
                     <CardBody style={{color:fontColor}}>
                         <CardTitle>{heading}</CardTitle>
-                        {convertedDiff=='0'?<FavoriteIcon style={{fontSize:'15px'}}/>:<CardSubtitle>{convertedDiff[0]=='-'?'':<span>+</span>} {convertedDiff}</CardSubtitle>}
+                        {convertedDiff==='0'?<FavoriteIcon style={{fontSize:'15px'}}/>:<CardSubtitle>{convertedDiff[0]==='-'?'':<span>+</span>} {convertedDiff}</CardSubtitle>}
                         <CardText className="card-text">{convertedCases}</CardText>
                     </CardBody>
                 </Card>
