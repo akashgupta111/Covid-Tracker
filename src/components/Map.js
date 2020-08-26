@@ -16,11 +16,11 @@ class Map extends Component {
 
     mapData = (result, type) =>{
         let mapArr= result.statewise.map(item=>{
-            return ['IN-'+item.statecode,Number(item[type])]
+            return ['IN-'+item.statecode,item.state,Number(item[type])]
         })
 
             mapArr.shift();
-            mapArr.unshift(['City',type])
+            mapArr.unshift(['City','state', type])
             console.log('s',mapArr);
             this.setState({
                 [type]:mapArr
@@ -79,8 +79,6 @@ class Map extends Component {
                                 datalessRegionColor: !theme ?'#181818': 'white',
                                 backgroundColor: !theme ?'#181818': 'white',
                                 colorAxis: { colors: ['white', '#e64c4c','red', '#140606'] },
-                                magnifyingGlass: {enable: false, zoomFactor: 200}
-
                                 }}
                                 // Note: you will need to get a mapsApiKey for your project.
                                 // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
