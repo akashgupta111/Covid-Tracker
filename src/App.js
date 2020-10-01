@@ -1,5 +1,4 @@
 import React,{useState} from 'react';
-import './App.css';
 import AppNavBar from './components/AppNavBar'
 import Cards from './components/Cards';
 import AppTable from './components/AppTable'
