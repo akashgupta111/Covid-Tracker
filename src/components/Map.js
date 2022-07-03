@@ -36,6 +36,8 @@ class Map extends Component {
             this.mapData(result, 'confirmed');
             this.mapData(result, 'recovered');
             this.mapData(result, 'deaths');
+         }).catch((err)=>{
+             console.log(err)
          })
     }
 

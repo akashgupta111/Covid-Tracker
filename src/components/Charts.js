@@ -40,6 +40,8 @@ class Charts extends Component {
                 totalDeaths:slicedDeaths,
                 totalActive: slicedActive
             })
+        }).catch((err)=>{
+            console.log(err)
         })
     }
    

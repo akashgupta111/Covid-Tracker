@@ -47,6 +47,8 @@ function AppNavBar (props) {
             ));
             stateName.shift();
             setStateName(stateName);
+        }).catch((err)=>{
+            console.log(err)
         })
     },[input]);
 

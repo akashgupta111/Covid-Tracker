@@ -8,6 +8,7 @@ import Map from './components/Map';
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import State from './components/State';
 import Footer from './components/Footer'
+import ErrorModal from './components/ErrorModal';
 
 function App() {
   const [themeHook,setThemeHook] = useState(0);
@@ -26,6 +27,7 @@ function App() {
 
         <Router>
           <AppNavBar changeTheme={toggleTheme} searchedState={searchedState}/>
+          <ErrorModal/>
           <Switch>
             {state.length?<Route exact path ={`/state/${state[0].state}`}>
               <State stateData={state}/>
